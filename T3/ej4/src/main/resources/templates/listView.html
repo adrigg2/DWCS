@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Números aleatorios</title>
+        <link rel="stylesheet" th:href="@{styles.css}">
+    </head>
+    <body>
+        <h1>Random numbers list</h1>
+        <table border="1px" th:if="${numberList.size!=0}">
+            <thead><th>Number</th><th>Operation</th></thead>
+            <tbody>
+                <tr th:each="number : ${numberList}">
+                    <td th:if="${number>50}" th:text="${number}" class="moreThan50">*</td>
+                    <td th:unless="${number>50}" th:text="${number}" class="lessThan50">*</td>
+                    <td>
+                        <a th:href="@{/delete/{id}(id=${number})}">delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        Total numbers: <span th:text="${totalQuantity}">0</span><br>
+        <a th:href="@{/new}">New number</a><br>
+    </body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/header :: head}"></head>
+
+<body class="bg-gray-100 text-gray-800">
+<th:block th:replace="~{fragments/menu.html}"></th:block>
+  <div class="container mx-auto p-6">
+    <h2 class="text-2xl font-bold mb-4">Enlaces Externos del FC Barcelona</h2>
+    <ul class="list-disc pl-5 space-y-2">
+      <li>
+        <a th:href="@{https://www.fcbarcelona.com}" class="text-blue-600 hover:underline" target="_blank">Página Oficial del FC Barcelona</a>
+      </li>
+      <li>
+        <a th:href="@{https://es.wikipedia.org/wiki/F%C3%BAtbol_Club_Barcelona}" class="text-blue-600 hover:underline" target="_blank">Wikipedia - FC Barcelona</a>
+      </li>
+      <li>
+        <a th:href="@{https://twitter.com/FCBarcelona}" class="text-blue-600 hover:underline" target="_blank">Twitter - FC Barcelona</a>
+      </li>
+      <li>
+        <a th:href="@{https://www.instagram.com/fcbarcelona}" class="text-blue-600 hover:underline" target="_blank">Instagram - FC Barcelona</a>
+      </li>
+      <li>
+        <a th:href="@{https://www.youtube.com/user/fcbarcelona}" class="text-blue-600 hover:underline" target="_blank">YouTube - FC Barcelona</a>
+      </li>
+    </ul>
+  </div>
+</body>
+
+</html>

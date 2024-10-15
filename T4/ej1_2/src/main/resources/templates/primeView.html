@@ -1,0 +1,7 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{/fragments.html::head_fragment}"></head>
+<body> 
+    <p>The number <span th:text="${number}"></span> is <span th:if="${!prime}">not</span> prime</p>
+</body>
+</html>

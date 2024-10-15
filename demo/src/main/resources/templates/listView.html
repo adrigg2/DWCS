@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head></head>
+    <body>
+        <h1>Listado de números aleatorios</h1>
+        <table border="1px">
+            <thead><th>Numero</th><th>Operación</th></thead>
+            <tbody>
+                <tr th:each="number : &{numberList}">
+                    <td th:text="${number}">*</td>
+                    <td>
+                        <a th:href="@{/delete/{id}(id=${number})}">delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        Total números: <span th:text="${totalQuantity}">0</span><br>
+        <a th:href="@{/new}">Nuevo número</a><br>
+    </body>
+</html>

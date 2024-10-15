@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Date 1: <label th:text="${dateForm.date1}"></label></p>
+    <p>Date 2: <label th:text="${dateForm.date2}"></label></p>
+    <p th:if='${dateForm.state.name().equals("COUNT_DAYS")}'>Days between date 1 and date 2 <span th:text="${dateForm.daysBetweenDates}"></span></p>
+    <div th:if='${dateForm.state.name().equals("COUNT_LEAP_YEARS")}'>
+        <p>Leap years between date 1 and date 2</p>
+        <ul th:each="year : ${dateForm.leapYears}">
+            <li th:text="${year}"></li>
+        </ul>
+    </div>
+    <p th:if='${dateForm.state.name().equals("COUNT_SUNDAYS")}'>Number of years that start on sunday between date 1 and date 2 <span th:text="${dateForm.yearsStartOnSunday}"></span></p>
+</body>
+</html>

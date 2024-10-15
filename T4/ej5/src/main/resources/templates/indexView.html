@@ -1,0 +1,27 @@
+<!DOCTYPE html> 
+<html xmlns:th="http://www.thymeleaf.org"> 
+    <head> 
+        <meta charset="UTF-8"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet"> 
+        <script src="/webjars/bootstrap/js/bootstrap.bundle.min.js"></script> 
+        <title>Calcular hipotenusa</title> 
+    </head> 
+    <body> 
+        <h3>Cálculos de hipotenusa:</h3> 
+        Cateto 1:<input type="text" id="cat1"/> 
+        Cateto 2:<input type="text" id="cat2"/> 
+        <button onclick="calcularHipotenusa()">Calcular</button> 
+        <div th:if="${errorTxt!=null}"> 
+            <p class="alert alert-danger" role="alert" th:text="${errorTxt}">error</p> 
+        </div> 
+        <script> 
+            function calcularHipotenusa() { 
+                var cat1 = document.querySelector("#cat1").value; 
+                var cat2 = document.querySelector("#cat2").value; 
+                window.location.href = "/calculateHypothenuse/" + cat1 + "/" + cat2; 
+            } 
+        </script> 
+    </body> 
+</html> 

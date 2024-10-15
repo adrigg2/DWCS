@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{/fragments.html::head_fragment}"></head>
+<body> 
+    <h1>Cálculos</h1> 
+    <a th:href="@{/operations/prime?number=7}"> Calculos - primo 7 </a><br/> 
+    <a th:href="@{/operations/prime?number=8}"> Calculos - primo 8 </a><br/> 
+    <a th:href="@{/operations/prime/}"> Calculos - error (sin numero)</a><br/> 
+    <a th:href="@{/operations/hypothenuse/3/5}"> Calculos - hipotenusa 3/5 </a><br/> 
+    <a th:href="@{/operations/hypothenuse/-3/5}"> Calculos - hipotenusa -3/5 </a><br/> 
+    <a th:href="@{/operations/divisors/20}"> Calculos - divisores 20 </a><br/> 
+   </body>
+</html>

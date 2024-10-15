@@ -1,0 +1,9 @@
+.lessThan50 {
+    color: red;
+    background-color: pink;
+}
+
+.moreThan50 {
+    color: darkgreen;
+    background-color: lightgreen;
+}

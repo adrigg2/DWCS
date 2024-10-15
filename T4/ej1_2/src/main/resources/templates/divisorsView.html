@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{/fragments.html::head_fragment}"></head>
+<body> 
+    <p>The divisors of <span th:text="${x}"></span> are:</p>
+    <ul th:each="divisor : ${divisors}">
+        <li th:text="${divisor}"></li>
+    </ul>
+</body>
+</html>

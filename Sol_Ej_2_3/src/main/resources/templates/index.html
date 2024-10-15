@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/header :: head}"></head>
+
+<body class="bg-gray-100 text-gray-800">
+<th:block th:replace="~{fragments/menu.html}"></th:block>
+  <div class="container mx-auto p-6">
+    <h2 class="text-2xl font-bold mb-4">Bienvenido a la página del FC Barcelona</h2>
+    <p>El <strong>Fútbol Club Barcelona</strong> es uno de los clubes de fútbol más grandes del mundo, con una rica historia y una base de aficionados a nivel global.</p>
+    <img th:src="@{/img/barcelona-inicio.jpg}" alt="Equipo FC Barcelona" class="my-4 rounded shadow-lg">
+    <p>El Barça ha ganado numerosos títulos nacionales e internacionales, además de ser un símbolo de la cultura catalana.</p>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/header :: head}"></head>
+
+<body class="bg-gray-100 text-gray-800">
+<th:block th:replace="~{fragments/menu.html}"></th:block>
+  <div class="container mx-auto p-6">
+    <h2 class="text-2xl font-bold mb-4">Palmarés del FC Barcelona</h2>
+    <ul class="list-disc pl-5">
+      <li>Campeón de La Liga: 27 veces</li>
+      <li>Campeón de la Copa del Rey: 31 veces</li>
+      <li>Campeón de la Liga de Campeones: 5 veces</li>
+      <li>Campeón del Mundial de Clubes: 3 veces</li>
+      <li>Campeón de la Supercopa de Europa: 3 veces</li>
+    </ul>
+    <img th:src="@{/img/barcelona-trofeos.jpg}" alt="Trofeos del Barcelona" class="my-4 rounded shadow-lg">
+  </div>
+</body>
+
+</html>
