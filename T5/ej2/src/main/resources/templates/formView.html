@@ -4,14 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .hasErrors {
+            background-color: red;
+        }
+    </style>
 </head>
 <body>
     <form action="#" method="post" th:action="@{/submit}" th:object="${dateForm}">
-        <label>Date 1: <input type="date" id="date1" th:field="*{date1}"></label>
-        <label>Date 2: <input type="date" id="date2" th:field="*{date2}"></label>
-        <label><input type="radio" id="1" name="1" value="0" th:field="*{state}">Count Days</label>
-        <label><input type="radio" id="2" name="2" value="1" th:field="*{state}">Show Leap Years</label>
-        <label><input type="radio" id="3" name="3" value="2" th:field="*{state}">Count Starting Sundays</label>
+        <label>Date 1: <input type="date" id="date1" th:field="*{date1}" th:classappend="${#fields.hasErrors('date1')} ? 'hasErrors'"></label>
+        <label>Date 2: <input type="date" id="date2" th:field="*{date2}" th:classappend="${#fields.hasErrors('date2')} ? 'hasErrors'"></label>
+        <label><input type="radio" id="1" name="1" value="COUNT_DAYS" th:field="*{state}">Count Days</label>
+        <label><input type="radio" id="2" name="2" value="COUNT_LEAP_YEARS" th:field="*{state}">Show Leap Years</label>
+        <label><input type="radio" id="3" name="3" value="COUNT_SUNDAYS" th:field="*{state}">Count Starting Sundays</label>
         <input type="submit" value="send">
     </form>
 </body>

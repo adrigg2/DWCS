@@ -5,12 +5,15 @@ import java.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.adrian.ej2.DateForm;
 import com.adrian.ej2.State;
 import com.adrian.ej2.services.DateService;
+
+import jakarta.validation.Valid;
 
 
 
@@ -21,13 +24,18 @@ public class MainController {
 
 
     @GetMapping("/")
-    public String getMethodName(Model model) {
+    public String getForm(Model model) {
         model.addAttribute("dateForm", new DateForm());
         return "formView";
     }
 
     @PostMapping("/submit")
-    public String postMethodName(DateForm dateForm, Model model) {
+    public String postResult(@Valid DateForm dateForm, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("dateForm", dateForm);
+            return "formView";
+        }
+
         LocalDate date1 = dateForm.getDate1().isBefore(dateForm.getDate2()) ? dateForm.getDate1() : dateForm.getDate2();
         LocalDate date2 = dateForm.getDate1().isBefore(dateForm.getDate2()) ? dateForm.getDate2() : dateForm.getDate1();
 

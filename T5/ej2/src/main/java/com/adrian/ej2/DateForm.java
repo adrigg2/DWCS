@@ -3,12 +3,20 @@ package com.adrian.ej2;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import jakarta.validation.constraints.NotNull;
+
 public class DateForm {
+    @NotNull
     private LocalDate date1;
+
+    @NotNull
     private LocalDate date2;
+    
     private Integer daysBetweenDates;
     private ArrayList<Integer> leapYears;
     private Integer yearsStartOnSunday;
+
+    @NotNull
     private State state;
     
     public LocalDate getDate1() {

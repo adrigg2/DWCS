@@ -25,7 +25,7 @@ public class DateServiceImpl implements DateService {
         }
 
         ArrayList<Integer> leapYears = new ArrayList<>();
-        for (int i = 0; year + i <= year2; i++) {
+        for (int i = 0; year + i <= year2; i += 4) {
             if ((year + i) % 100 != 0 || (year + i) % 400 == 0) {
                 leapYears.add(year + i);
             }
@@ -42,6 +42,7 @@ public class DateServiceImpl implements DateService {
             if (januaryOne.getDayOfWeek().equals(DayOfWeek.SUNDAY)) {
                 startingSundays++;
             }
+            januaryOne = januaryOne.plusYears(1);
         }
         return startingSundays;
     }
