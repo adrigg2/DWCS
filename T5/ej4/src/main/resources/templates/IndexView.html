@@ -8,7 +8,7 @@
 <body>
     <form action="#" method="post" th:action="@{/submit}" th:object="${countryForm}">
         <select onchange="this.form.submit()" th:field="*{name}">
-            <option th:each="country : ${countryList}" th:text="${}"></option>
+            <option th:each="country : ${countryList}" th:text="${country.getName()}" th:value="${country.getName()}"></option>
         </select>
     </form>
 </body>

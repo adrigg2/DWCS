@@ -19,7 +19,7 @@ public class CountryServiceImpl implements CountryService {
     @Override
     public void loadCountriesFromFile() {
         try {
-            List<String> countriesData = Files.readAllLines(Path.of("paises.csv"), Charset.forName("UTF-8"));
+            List<String> countriesData = Files.readAllLines(Path.of("paises.csv"), Charset.forName("ISO-8859-1"));
             for (String country : countriesData) {
                 String[] countryData = country.split(";");
                 countries.put(countryData[0], new Country(countryData[0], countryData[1], countryData[2]));
