@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countries</title>
+</head>
+<body>
+    <form action="#" method="post" th:action="@{/submit}" th:object="${countryForm}">
+        <select onchange="this.form.submit()" th:field="*{name}">
+            <option th:each="country : ${countryList}" th:text="${}"></option>
+        </select>
+    </form>
+</body>
+</html>
