@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Countries</title>
-</head>
-<body>
-    <form action="#" method="post" th:action="@{/submit}" th:object="${countryForm}">
-        <select onchange="this.form.submit()" th:field="*{name}">
-            <option th:each="country : ${countryList}" th:text="${country.getName()}" th:value="${country.getName()}"></option>
-        </select>
-    </form>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Countries</title>
+    </head>
+    <body>
+        <form action="#" method="post" th:action="@{/country}" th:object="${countryForm}">
+            <select onchange="this.form.submit()" th:field="*{name}">
+                <option selected value="null">--SELECT A COUNTRY--</option>
+                <option th:each="country : ${countryList}" th:text="${country.getName()}" th:value="${country.getName()}"></option>
+            </select>
+        </form>
+        <p th:if="${countryCapital} != null">Capital: <span th:text="${countryCapital}"></span></p>
+        <p th:if="${countryCapital} != null">Population: <span th:text="${countryPopulation}"></span></p>
+    </body>
 </html>
