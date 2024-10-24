@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{/fragments.html::head_fragment}"></head>
+<body>
+    <nav th:replace="~{/fragments.html::menu}"></nav>
+    <h1>Contact</h1>
+    <form action="#" method="post" th:action="@{/send}" th:object="${contactForm}">
+        <label for="name">Name: </label>
+        <input type="text" name="name" id="name" th:field="*{name}"><br>
+        <label for="dni">DNI: </label>
+        <input type="text" name="dni" id="dni" th:field="*{dni}"><br>
+        <label for="email">Email: </label>
+        <input type="email" name="email" id="email" th:field="*{email}"><br>
+        <label for="direction">Direction: </label>
+        <input type="text" name="direction" id="direction" th:field="*{direction}"><br>
+        <label for="product_type"></label>
+        <select name="product_type" id="product_type" th:field="*{productType}">
+            <option value="photo">Signed Photo</option>
+            <option value="vip">VIP ticket</option>
+            <option value="scarf">Scarf</option>
+        </select><br>
+        <label for="conditions">Accepts conditions</label>
+        <input type="checkbox" name="conditions" id="conditions" th:field="*{conditions}"><br>
+        <label for="file">Attatch a file</label>
+        <input type="file" name="file" id="file" th:field="*{file}"><br>
+        <input type="submit" value="Send">
+    </form>
+</body>
+</html>

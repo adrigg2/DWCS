@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:fragment="head_fragment">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipo Fútbol</title>
+</head>
+<body>
+    <nav th:fragment="menu">
+        <ul style="margin: 0; overflow: hidden;">
+            <li style="float: left;"><a th:href="@{/}" style="text-align: center; padding: 16px;">Inicio</a></li>
+            <li style="float: left;"><a th:href="@{/palmares}" style="text-align: center; padding: 16px;">Palmarés</a></li>
+            <li style="float: left;"><a th:href="@{/galeria}" style="text-align: center; padding: 16px;">Galería</a></li>
+            <li style="float: left;"><a th:href="@{/enlaces}" style="text-align: center; padding: 16px;">Enlaces externos</a></li>
+            <li style="float: left;"><a th:href="@{/contact}" style="text-align: center; padding: 16px;">Contact</a></li>
+        </ul>
+    </nav>
+</body>
+</html>
