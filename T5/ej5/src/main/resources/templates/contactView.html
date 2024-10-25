@@ -4,7 +4,7 @@
 <body>
     <nav th:replace="~{/fragments.html::menu}"></nav>
     <h1>Contact</h1>
-    <form action="#" method="post" th:action="@{/send}" th:object="${contactForm}">
+    <form action="#" method="post" th:action="@{/send}" th:object="${contactForm}" enctype="multipart/form-data">
         <label for="name">Name: </label>
         <input type="text" name="name" id="name" th:field="*{name}"><br>
         <label for="dni">DNI: </label>
@@ -22,8 +22,10 @@
         <label for="conditions">Accepts conditions</label>
         <input type="checkbox" name="conditions" id="conditions" th:field="*{conditions}"><br>
         <label for="file">Attatch a file</label>
-        <input type="file" name="file" id="file" th:field="*{file}"><br>
+        <input type="file" name="file" id="file"><br>
         <input type="submit" value="Send">
     </form>
+    <div th:if="${txtError != null}" style="background-color: red;" th:text="${txtError}">
+    </div>
 </body>
 </html>
