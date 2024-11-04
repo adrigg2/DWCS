@@ -1,11 +1,10 @@
 package com.adrian;
 
-import java.util.ArrayList;
-
 public class App 
 {
     public static void main( String[] args )
     {
+        // Initialize the Teacher and give them some students
         Teacher teacher = new Teacher(0, "Profe");
         teacher.addStudent(new Student(1, "student1", 5));
         teacher.addStudent(new Student(2, "student2", 10));
@@ -18,17 +17,12 @@ public class App
         teacher.addStudent(new Student(9, "student9", 7));
         teacher.addStudent(new Student(10, "student10", 5));
         
-        // Check every student in teacher and get only the ones with passing grades
-        ArrayList<Student> passingStudents = new ArrayList<>();
+        // Check every student in teacher and priny the ones with passing grades, in order of grading
+        System.out.println("Students with passing grades:\n");
         teacher.forEach((student) -> {
             if (student.getGrade() >= 5) {
-                passingStudents.add(student);
+                System.out.println(student);
             }
-        });
-
-        System.out.println("Students with passing grades:\n");
-        passingStudents.forEach((student) -> {
-            System.out.println(student);
         });
     }
 }
