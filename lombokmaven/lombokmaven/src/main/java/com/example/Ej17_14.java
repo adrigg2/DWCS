@@ -21,7 +21,5 @@ public class Ej17_14 {
         System.out.println(usuario);
         Usuario uAuten = usuario.withAutenticado(true);
         System.out.println(uAuten);
-        long a = 0x0123456789ABCDEFL;
-        long b = 0b1001010101010101010101010100000000000011010100000000111111101010L;
     }
 } // imprescidible constructor por ser clase inmutable
