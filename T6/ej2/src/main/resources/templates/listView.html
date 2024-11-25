@@ -12,16 +12,17 @@
                 window.location.href = "/search?name=" + name;
             }
 
-            var genderSelect = document.getElementById("gender");
-            genderSelect.onchange = event => {
-                window.location.href = "/filter?gender=" + event.target.value;
+            function filter() {
+                var gender = document.getElementById("gender").value;
+                window.location.href = "/filter?gender=" + gender;
             }
         </script>
     </head>
     <body>
         <h1>List of employees in the company</h1>
         <p>Search by name: </p><input type="text" name="name" id="name"><button onclick="search()">Search</button><br>
-        <p>Filter by gender: </p><select name="gender" id="gender">
+        <p>Filter by gender: </p><select name="gender" id="gender" onchange="filter()">
+            <option th:if="${selectedGender != null}" th:value="${selectedGender}" th:text="${selectedGender}"></option>
             <option th:each="gender : ${T(com.adrian.ej2.domain.Gender).values()}" th:value="${gender}" th:text="${gender}"></option>
         </select>
 

@@ -101,6 +101,7 @@ public class EmployeeController {
     @GetMapping("/filter")
     public String getEmployeeByGender(@RequestParam String gender, Model model) {
         model.addAttribute("employeeList", employeeService.filterByGender(Gender.valueOf(gender)));
+        model.addAttribute("selectedGender", gender);
         return "listView";
     }
 }

@@ -1,6 +1,7 @@
 package com.adrian.ej2.services;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -14,7 +15,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public List<Employee> getAll() {
-        return repository;
+        return sortByName(repository);
     }
 
     @Override
@@ -63,7 +64,7 @@ public class EmployeeServiceImpl implements EmployeeService {
                 employeesByName.add(employee);
             }
         }
-        return employeesByName;
+        return sortByName(employeesByName);
     }
 
     @Override
@@ -74,7 +75,11 @@ public class EmployeeServiceImpl implements EmployeeService {
                 employeesByGender.add(employee);
             }
         }
-        return employeesByGender;
+        return sortByName(employeesByGender);
     }
 
+    private static List<Employee> sortByName(List<Employee> employees) {
+        employees.sort(Comparator.comparing(Employee::getName));
+        return employees;
+    }
 }
