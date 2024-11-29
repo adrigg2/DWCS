@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Employee List</title>
+        <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet"> 
+        <script src="/webjars/bootstrap/js/bootstrap.bundle.min.js"></script> 
+        <script defer>
+            function search() {
+                var name = document.getElementById("name").value;
+                window.location.href = "/search?name=" + name;
+            }
+
+            function filter() {
+                var gender = document.getElementById("gender").value;
+                window.location.href = "/filter?gender=" + gender;
+            }
+        </script>
+    </head>
+    <body>
+        <h1>List of employees in the company</h1>
+        <p>Search by name: </p><input type="text" name="name" id="name"><button onclick="search()">Search</button><br>
+        <p>Filter by gender: </p><select name="gender" id="gender" onchange="filter()">
+            <option th:if="${selectedGender != null}" th:value="${selectedGender}" th:text="${selectedGender}"></option>
+            <option th:each="gender : ${T(com.adrian.ej2.domain.Gender).values()}" th:value="${gender}" th:text="${gender}"></option>
+        </select>
+
+        </select>
+        <a th:href="@{/}">Restablecer</a>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Salary</th>
+                    <th>Is Active</th>
+                    <th>Gender</th>
+                    <th>Edit</th>
+                    <th>Remove</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="employee : ${employeeList}">
+                    <td th:text="${employee.id}"></td>
+                    <td><a th:href="@{/{id}(id=${employee.id})}" th:text="${employee.name}"></a></td>
+                    <td th:text="${employee.email}"></td>
+                    <td th:text="${employee.salary}"></td>
+                    <td th:text="${employee.isActive}"></td>
+                    <td th:text="${employee.gender}"></td>
+                    <td><a th:href="@{/edit/{id}(id=${employee.id})}" class="btn btn-primary">Edit</a></td>
+                    <td><a th:href="@{/delete/{id}(id=${employee.id})}" class="btn btn-danger">Delete</a></td>
+                </tr>
+            </tbody>
+        </table>
+        <p th:if="${msg != null}">Error: <span th:text="${msg}"></span></p>
+        <a th:href="@{/}">Home</a><br>
+        <a th:href="@{/new}">New employee</a><br>
+    </body>
+</html>
