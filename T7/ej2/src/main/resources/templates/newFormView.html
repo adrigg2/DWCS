@@ -16,7 +16,7 @@
             <label for="salary">Salary: </label><input type="text" name="salary" id="salary" th:field="*{salary}"><br>
             <label for="active">Is Active: </label><input type="checkbox" name="active" id="active" th:field="*{active}"><br>
             Gender: <br>
-            <div th:each="gender : ${T(com.adrian.ej1.domain.Gender).values()}">
+            <div th:each="gender : ${T(com.adrian.ej2.domain.Gender).values()}">
                 <input type="radio" name="gender" th:value="${gender}" th:id="${gender}" th:field="*{gender}"><label th:for="${gender}" th:text="${gender}"></label>
             </div>
             <input type="submit" value="Send">

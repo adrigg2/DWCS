@@ -21,16 +21,16 @@ public class Ej1Application {
 		return _ -> {
 			employeeService.add(new Employee(null, "pepe", "pepe@gmail.com", 250000.0, true, Gender.MALE));
 			employeeService.add(new Employee(null, "ana", "ana@gmail.com", 28000.0, true, Gender.FEMALE));
-			employeeService.add(new Employee(null, "af", "ana@gmail.com", 28012312300.0, true, Gender.FEMALE));
-			employeeService.add(new Employee(null, "afgana", "ana@gmail.com", 28123000.0, true, Gender.MALE));
-			employeeService.add(new Employee(null, "asdf", "ana@gmail.com", 2801231300.0, true, Gender.MALE));
-			employeeService.add(new Employee(null, "asagasgna", "ana@gmail.com", 28012300.0, true, Gender.FEMALE));
-			employeeService.add(new Employee(null, "sdf", "ana@gmail.com", 280012310.0, true, Gender.MALE));
-			employeeService.add(new Employee(null, "asdfsfna", "ana@gmail.com", 2812313000.0, true, Gender.FEMALE));
-			employeeService.add(new Employee(null, "asf", "ana@gmail.com", 2802300.0, true, Gender.FEMALE));
-			employeeService.add(new Employee(null, "sdf", "ana@gmail.com", 21238000.0, true, Gender.FEMALE));
-			employeeService.add(new Employee(null, "sdf", "ana@gmail.com", 2802300.0, true, Gender.MALE));
-			employeeService.add(new Employee(null, "sdfsf", "ana@gmail.com", 28032423400.0, true, Gender.MALE));
+			employeeService.add(new Employee(null, "Ana Gómez", "ana.gomez@email.com", 25000.0, true, Gender.FEMALE));
+			employeeService.add(new Employee(null, "Juan Pérez", "juan.perez@email.com", 30000.0, true, Gender.MALE));
+			employeeService.add(new Employee(null, "Marta Sánchez", "marta.sanchez@email.com", 22000.0, false, Gender.FEMALE));
+			employeeService.add(new Employee(null, "Carlos Ruiz", "carlos.ruiz@email.com", 28500.0, true, Gender.MALE));
+			employeeService.add(new Employee(null, "Beatriz López", "beatriz.lopez@email.com", 35000.0, true, Gender.FEMALE));
+			employeeService.add(new Employee(null, "José Martínez", "jose.martinez@email.com", 27000.0, false, Gender.MALE));
+			employeeService.add(new Employee(null, "Laura Fernández", "laura.fernandez@email.com", 24500.0, true, Gender.FEMALE));
+			employeeService.add(new Employee(null, "Enrique García", "enrique.garcia@email.com", 40000.0, true, Gender.MALE));
+			employeeService.add(new Employee(null, "Sofía Rodríguez", "sofia.rodriguez@email.com", 33000.0, true, Gender.FEMALE));
+			employeeService.add(new Employee(null, "Alex Navarro", "alex.navarro@email.com", 26000.0, false, Gender.OTHER));
 		};
 	}
 }

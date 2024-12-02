@@ -1,9 +1,9 @@
-package com.adrian.ej1.services;
+package com.adrian.ej2.services;
 
 import java.util.List;
 
-import com.adrian.ej1.model.Employee;
-import com.adrian.ej1.domain.Gender;
+import com.adrian.ej2.model.Employee;
+import com.adrian.ej2.domain.Gender;
 
 public interface EmployeeService {
     List<Employee> getAll();
