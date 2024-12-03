@@ -5,9 +5,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import com.adrian.ej2.domain.Department;
+import com.adrian.ej2.domain.Employee;
 import com.adrian.ej2.domain.Gender;
-import com.adrian.ej2.model.Department;
-import com.adrian.ej2.model.Employee;
 import com.adrian.ej2.services.EmployeeService;
 
 @SpringBootApplication

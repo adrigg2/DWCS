@@ -1,10 +1,10 @@
-package com.adrian.ej2.model;
-
-import com.adrian.ej2.domain.Gender;
+package com.adrian.ej2.domain;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Min;
@@ -38,5 +38,6 @@ public class Employee {
     private Gender gender;
 
     @ManyToOne
+    @JoinColumn(name = "DEPT_ID", foreignKey = @ForeignKey(name = "DEPT_ID_FK"))
     private Department department;
 }

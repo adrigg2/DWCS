@@ -7,8 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 
+import com.adrian.ej2.domain.Employee;
 import com.adrian.ej2.domain.Gender;
-import com.adrian.ej2.model.Employee;
+import com.adrian.ej2.services.DepartmentService;
 import com.adrian.ej2.services.EmployeeService;
 
 import jakarta.validation.Valid;
@@ -23,7 +24,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class EmployeeController {
     @Autowired
-    private EmployeeService employeeService;    
+    private EmployeeService employeeService;
+    @Autowired
+    private DepartmentService departmentService;
 
     @GetMapping( { "/", "/list" } )
     public String showList(@RequestParam(required = false) String msg, Model model) {
@@ -31,7 +34,7 @@ public class EmployeeController {
             model.addAttribute("msg", msg);
         }
         model.addAttribute("employeeList", employeeService.getAll());
-        return "listView";
+        return "employee/listView";
     }
 
     @GetMapping("/{id}")
@@ -39,7 +42,7 @@ public class EmployeeController {
         try {
             Employee employee = employeeService.getById(id);
             model.addAttribute("employee", employee);
-            return "listOneView";
+            return "employee/listOneView";
         } catch (RuntimeException e) {
             return "redirect:/?msg=" + e.getMessage();
         }
@@ -48,7 +51,8 @@ public class EmployeeController {
     @GetMapping("/new")
     public String showNew(Model model) {
         model.addAttribute("employeeForm", new Employee());
-        return "newFormView";
+        model.addAttribute("departmentList", departmentService.getAll());
+        return "employee/newFormView";
     }
 
     @PostMapping("/new/submit")
@@ -69,7 +73,8 @@ public class EmployeeController {
         try {
             Employee employee = employeeService.getById(id);
             model.addAttribute("employeeForm", employee);
-            return "editFormView";
+            model.addAttribute("departmentList", departmentService.getAll());
+            return "employee/editFormView";
         } catch (RuntimeException e) {
             return "redirect:/?msg=" + e.getMessage();
         }
@@ -90,14 +95,18 @@ public class EmployeeController {
 
     @GetMapping("/delete/{id}")
     public String showDelete(@PathVariable long id) {
-        employeeService.delete(id);
-        return "redirect:/list";
+        try {
+            employeeService.delete(id);
+            return "redirect:/list";
+        } catch (RuntimeException e) {
+            return "redirect:/?msg=" + e.getMessage();
+        }
     }
 
     @GetMapping("/search")
     public String getEmployeeByName(@RequestParam String name, Model model) {
         model.addAttribute("employeeList", employeeService.searchByName(name));
-        return "listView";
+        return "employee/listView";
     }
 
     @GetMapping("/filter")
@@ -107,7 +116,7 @@ public class EmployeeController {
         }
         model.addAttribute("employeeList", employeeService.filterByGender(Gender.valueOf(gender)));
         model.addAttribute("selectedGender", gender);
-        return "listView";
+        return "employee/listView";
     }
 
     @GetMapping("/list1/{salary}")
@@ -115,7 +124,7 @@ public class EmployeeController {
         List<Employee> employees = employeeService.getEmployeesGreaterSalary(salary);
         model.addAttribute("salaryListTitle", "Employees with a salary greater than " + salary);
         model.addAttribute("salaryList", employees);
-        return "listsView";
+        return "employee/listsView";
     }
 
     @GetMapping("/list2")
@@ -123,6 +132,6 @@ public class EmployeeController {
         List<Employee> employees = employeeService.getEmployeesSalaryGreaterAverage();
         model.addAttribute("salaryListTitle", "Employees with a salary greater than average");
         model.addAttribute("salaryList", employees);
-        return "listsView";
+        return "employee/listsView";
     }
 }

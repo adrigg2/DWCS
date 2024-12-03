@@ -19,6 +19,10 @@
             <div th:each="gender : ${T(com.adrian.ej2.domain.Gender).values()}">
                 <input type="radio" name="gender" th:value="${gender}" th:id="${gender}" th:field="*{gender}"><label th:for="${gender}" th:text="${gender}"></label>
             </div>
+            Department: <br>
+            <select name="department" id="department" th:field="*{department}">
+                <option th:each="department : ${departmentList}" th:value="${department.id}" th:text="${department.name}"></option>
+            </select>
             <input type="submit" value="Send">
         </form>
         <a th:href="@{/}">Home</a><br>

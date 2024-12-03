@@ -34,8 +34,6 @@
                 document.getElementById("gender").value = url.searchParams.get("gender");
             }
         </script>
-
-        </select>
         <a th:href="@{/}">Restablecer</a>
         <table class="table table-striped">
             <thead>
@@ -63,7 +61,7 @@
                 </tr>
             </tbody>
         </table>
-        <p th:if="${msg != null}">Error: <span th:text="${msg}"></span></p>
+        <p class="alert alert-danger" th:if="${msg != null}">Error: <span th:text="${msg}"></span></p>
         <a class="btn btn-primary" th:href="@{/}">Home</a><br>
         <a class="btn btn-primary" th:href="@{/new}">New employee</a><br>
         Salary filter: <input type="text" id="salary">

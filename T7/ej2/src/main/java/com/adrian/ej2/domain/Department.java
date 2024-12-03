@@ -1,4 +1,4 @@
-package com.adrian.ej2.model;
+package com.adrian.ej2.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
