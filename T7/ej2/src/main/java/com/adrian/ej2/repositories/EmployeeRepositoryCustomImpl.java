@@ -26,7 +26,7 @@ public class EmployeeRepositoryCustomImpl implements EmployeeRepositoryCustom {
         CriteriaQuery<Employee> query = cb.createQuery(Employee.class);
         Root<Employee> employee = query.from(Employee.class); // Gets the entity to work from
 
-        // Get the path to each attribute relevant for the query
+        // Gets each attribute relevant for the query
         Path<String> namePath = employee.get("name");
         Path<Gender> genderPath = employee.get("gender");
         Path<Department> departmentPath = employee.get("department");
