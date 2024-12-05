@@ -24,12 +24,14 @@ public class EmployeeRepositoryCustomImpl implements EmployeeRepositoryCustom {
     public List<Employee> filterEmployees(String name, Gender gender, Department department) {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<Employee> query = cb.createQuery(Employee.class);
-        Root<Employee> employee = query.from(Employee.class);
+        Root<Employee> employee = query.from(Employee.class); // Gets the entity to work from
 
+        // Get the path to each attribute relevant for the query
         Path<String> namePath = employee.get("name");
         Path<Gender> genderPath = employee.get("gender");
         Path<Department> departmentPath = employee.get("department");
 
+        // List with the query arguments
         List<Predicate> predicates = new ArrayList<>();
         
         if (name != null) {
