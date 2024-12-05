@@ -9,7 +9,7 @@ import com.adrian.ej2.domain.Gender;
 import com.adrian.ej2.model.Employee;
 
 
-public interface EmployeeRepository extends JpaRepository<Employee, Long> {
+public interface EmployeeRepository extends JpaRepository<Employee, Long>, EmployeeRepositoryCustom {
     List<Employee> findByNameContainingIgnoreCaseOrderByNameAsc(String name);
     List<Employee> findByGenderOrderByNameAsc(Gender gender);
     List<Employee> findBySalaryGreaterThanEqualOrderBySalary(double salary);
