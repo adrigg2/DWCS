@@ -4,4 +4,5 @@ import com.adrian.ej2.model.Department;
 
 public interface DepartmentService {
     Department add(Department department);
+    void delete(Long id);
 }
