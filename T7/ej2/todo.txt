@@ -1,0 +1,8 @@
+fix get-form script
+add nav and head fragments to all views
+borrados en cascada (pag 102)
+presupuesto (7.2.b.a)
+no departamentos duplicados (7.2.b.b) (@Column(unique = true))
+nóminas (7.3) (pag 103)
+nóminas en csv (7.3.opcional)
+Proyecto (7.4) (pag 107)
