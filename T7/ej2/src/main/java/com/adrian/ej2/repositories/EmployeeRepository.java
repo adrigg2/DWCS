@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import com.adrian.ej2.domain.Employee;
 import com.adrian.ej2.domain.Gender;
-import com.adrian.ej2.model.Employee;
 
 
 public interface EmployeeRepository extends JpaRepository<Employee, Long>, EmployeeRepositoryCustom {

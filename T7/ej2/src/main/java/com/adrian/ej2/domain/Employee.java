@@ -1,11 +1,15 @@
-package com.adrian.ej2.model;
+package com.adrian.ej2.domain;
 
-import com.adrian.ej2.domain.Gender;
+import java.util.ArrayList;
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
@@ -39,4 +43,7 @@ public class Employee {
 
     @ManyToOne
     private Department department;
+
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Payslip> payslips = new ArrayList<>();
 }

@@ -7,8 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 
+import com.adrian.ej2.domain.Employee;
 import com.adrian.ej2.domain.Gender;
-import com.adrian.ej2.model.Employee;
 import com.adrian.ej2.services.EmployeeService;
 
 import jakarta.validation.Valid;

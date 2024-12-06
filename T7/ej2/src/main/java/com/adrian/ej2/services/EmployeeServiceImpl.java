@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.adrian.ej2.domain.Employee;
 import com.adrian.ej2.domain.Gender;
-import com.adrian.ej2.model.Employee;
 import com.adrian.ej2.repositories.EmployeeRepository;
 
 @Service

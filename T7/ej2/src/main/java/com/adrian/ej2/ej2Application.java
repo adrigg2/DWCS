@@ -5,9 +5,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import com.adrian.ej2.domain.Department;
+import com.adrian.ej2.domain.Employee;
 import com.adrian.ej2.domain.Gender;
-import com.adrian.ej2.model.Department;
-import com.adrian.ej2.model.Employee;
 import com.adrian.ej2.services.DepartmentService;
 import com.adrian.ej2.services.EmployeeService;
 
@@ -21,9 +21,9 @@ public class ej2Application {
 	@Bean
 	CommandLineRunner initData(EmployeeService employeeService, DepartmentService departmentService) {
 		return _ -> {
-			Department it = departmentService.add(new Department(null, "IT"));
-			Department sales = departmentService.add(new Department(null, "Sales"));
-			Department hr = departmentService.add(new Department(null, "Human Resources"));
+			Department it = departmentService.add(new Department(null, "IT", 1e6));
+			Department sales = departmentService.add(new Department(null, "Sales", 1e6));
+			Department hr = departmentService.add(new Department(null, "Human Resources", 1e6));
 
 			employeeService.add(new Employee(null, "pepe", "pepe@gmail.com", 250000.0, true, Gender.MALE, it));
 			employeeService.add(new Employee(null, "ana", "ana@gmail.com", 28000.0, true, Gender.FEMALE, hr));
