@@ -19,4 +19,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long>, Emplo
 
     @Query("select count(e) from Employee e where e.department.id = ?1")
     Long employeeAmountInDepartment(Long departmentId);
+
+    @Query("select sum(e.salary) from Employee e where e.department.id = ?1")
+    Double getSalarySumByDepartment(Long departmentId);
 }
