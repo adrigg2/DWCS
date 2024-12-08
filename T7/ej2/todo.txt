@@ -5,3 +5,4 @@ nóminas en csv (7.3.opcional)
 Proyecto (7.4) (pag 107)
 ver si se pueden eliminar los "%XX" de los mensajes de error
 mover check de salarios a departmentRepo
+<html xmlns:th="http://www.thymeleaf.org"> 
