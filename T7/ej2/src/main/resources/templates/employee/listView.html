@@ -5,35 +5,32 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Employee List</title>
         <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet"> 
-        <script src="/webjars/bootstrap/js/bootstrap.bundle.min.js"></script> 
-        <script defer>
-            function search() {
-                var name = document.getElementById("name").value;
-                window.location.href = "/search?name=" + name;
-            }
-
-            function filter() {
-                var gender = document.getElementById("gender").value;
-                window.location.href = "/filter?gender=" + gender;
-            }
-        </script>
+        <script src="/webjars/bootstrap/js/bootstrap.bundle.min.js"></script>
     </head>
     <body>
         <h1>List of employees in the company</h1>
-        <p>Search by name: </p><input type="text" name="name" id="name"><button onclick="search()">Search</button><br>
-        <p>Filter by gender: </p><select name="gender" id="gender" onchange="filter()">
-            <option value="">GENDER</option>
-            <option th:each="gender : ${T(com.adrian.ej2.domain.Gender).values()}" th:value="${gender}" th:text="${gender}"></option>
-        </select>
-        <script>
-            var url = new URL(window.location.href);
-            var genderValue = url.searchParams.get("gender");
-            if (genderValue === null) {
-                document.getElementById("gender").value = "";
-            } else {
-                document.getElementById("gender").value = url.searchParams.get("gender");
-            }
-        </script>
+        <form th:action="@{/filter}" method="get">
+            <label for="name">Search by name: </label><input type="text" name="name" id="name"><br>
+            <label for="gender">Filter by gender: </label>
+            <select name="gender" id="gender" onchange="filter()">
+                <option value="">GENDER</option>
+                <option th:each="gender : ${T(com.adrian.ej2.domain.Gender).values()}" th:value="${gender}" th:text="${gender}"></option>
+            </select>
+            <label for="department">Filter by department: </label>
+            <select name="department" id="department" onchange="filter()">
+                <option value="">DEPARTMENT</option>
+                <option th:each="department : ${departmentList}" th:value="${department.id}" th:text="${department.name}"></option>
+            </select><br>
+            <script>
+                var url = new URL(window.location.href);
+                var genderValue = url.searchParams.get("gender");
+                var departmentValue = url.searchParams.get("department");
+
+                document.getElementById("gender").value = genderValue ?? "";
+                document.getElementById("department").value = departmentValue ?? "";
+            </script>
+            <input type="submit" value="Search">
+        </form>
         <a th:href="@{/}">Restablecer</a>
         <table class="table table-striped">
             <thead>

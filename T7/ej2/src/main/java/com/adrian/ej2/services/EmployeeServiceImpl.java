@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.adrian.ej2.domain.Department;
 import com.adrian.ej2.domain.Employee;
 import com.adrian.ej2.domain.Gender;
+import com.adrian.ej2.repositories.DepartmentRepository;
 import com.adrian.ej2.repositories.EmployeeRepository;
 
 @Service
@@ -60,4 +62,29 @@ public class EmployeeServiceImpl implements EmployeeService {
     public List<Employee> getEmployeesSalaryGreaterAverage() {
         return repository.queryBySalaryOverAverage();    
     }
+    
+    @Override
+    public List<Employee> filterByDepartment(Department department) {
+        return repository.findByDepartment(department);
+    }
+
+    @Override
+    public List<Employee> filterEmployees(String name, Gender gender, Department department) {
+        List<Employee> filteredList = null;
+
+        if (name != "" && name != null) {
+            filteredList = searchByName(name);
+        }
+
+        if (gender != null) {
+            filteredList = filterByGender(gender);
+        }
+
+        if (department != null) {
+            filteredList = filterByDepartment(department);
+        }
+
+        return filteredList;
+    }
+    
 }

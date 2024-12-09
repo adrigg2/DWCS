@@ -34,6 +34,7 @@ public class EmployeeController {
             model.addAttribute("msg", msg);
         }
         model.addAttribute("employeeList", employeeService.getAll());
+        model.addAttribute("departmentList", departmentService.getAll());
         return "employee/listView";
     }
 
@@ -103,15 +104,9 @@ public class EmployeeController {
         }
     }
 
-    @GetMapping("/search")
-    public String getEmployeeByName(@RequestParam String name, Model model) {
-        model.addAttribute("employeeList", employeeService.searchByName(name));
-        return "employee/listView";
-    }
-
     @GetMapping("/filter")
-    public String getEmployeeByGender(@RequestParam String gender, Model model) {
-        if (gender.isEmpty()) {
+    public String getEmployeeByFilter(@RequestParam(required = false) String gender, @RequestParam(required = false) String name, @RequestParam(required = false) Long department, Model model) {
+        if (gender.isEmpty() && name.isEmpty() && department == null) {
             return "redirect:/";
         }
         model.addAttribute("employeeList", employeeService.filterByGender(Gender.valueOf(gender)));
