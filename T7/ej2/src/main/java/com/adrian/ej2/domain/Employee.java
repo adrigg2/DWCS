@@ -49,6 +49,6 @@ public class Employee {
     private Department department;
 
     @ToString.Exclude
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "empleado")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "employee")
     private List<Payslip> payslips = new ArrayList<>();
 }

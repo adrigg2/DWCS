@@ -38,7 +38,7 @@ public class EmployeeController {
         return "employee/listView";
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/employee/{id}")
     public String showElement(@PathVariable long id, Model model) {
         try {
             Employee employee = employeeService.getById(id);
@@ -117,7 +117,16 @@ public class EmployeeController {
         if (gender.isEmpty() && name.isEmpty() && department == null) {
             return "redirect:/";
         }
-        model.addAttribute("employeeList", employeeService.filterByGender(Gender.valueOf(gender)));
+
+        Gender genderValue;
+
+        if (gender.isEmpty()) {
+            genderValue = null;
+        } else {
+            genderValue = Gender.valueOf(gender);
+        }
+
+        model.addAttribute("employeeList", employeeService.filterEmployees(name, genderValue, departmentService.getById(department)));
         model.addAttribute("selectedGender", gender);
         return "employee/listView";
     }

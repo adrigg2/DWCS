@@ -12,9 +12,6 @@ public interface EmployeeService {
     Employee add(Employee employee);
     Employee edit(Employee employee);
     void delete(long id);
-    List<Employee> searchByName(String name);
-    List<Employee> filterByGender(Gender gender);
-    List<Employee> filterByDepartment(Department department);
     List<Employee> getEmployeesGreaterSalary(double salary);
     List<Employee> getEmployeesSalaryGreaterAverage();
     List<Employee> filterEmployees(String name, Gender gender, Department department);

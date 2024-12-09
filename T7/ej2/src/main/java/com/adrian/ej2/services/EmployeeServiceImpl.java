@@ -32,11 +32,15 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Employee add(Employee employee) {
         Double departmentExpenses = repository.getSalarySumByDepartment(employee.getDepartment().getId());
+        if (departmentExpenses == null) {
+            departmentExpenses = 0.0;
+        }
+
         Department department = departmentRepository.findById(employee.getDepartment().getId()).orElseThrow(() -> new RuntimeException("There is no department with that id"));
         Double departmentBudget = department.getAnnualBudget();
         
         if (departmentExpenses + employee.getSalary() > departmentBudget) {
-            throw new RuntimeException("The inclusion of that employee would leave the department in red numbers");
+            throw new RuntimeException("The inclusion of that employee would leave the department in a deficit");
         }
 
         return repository.save(employee);
@@ -55,16 +59,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public List<Employee> searchByName(String name) {
-        return repository.findByNameContainingIgnoreCaseOrderByNameAsc(name);
-    }
-
-    @Override
-    public List<Employee> filterByGender(Gender gender) {
-        return repository.findByGenderOrderByNameAsc(gender);
-    }
-
-    @Override
     public List<Employee> getEmployeesGreaterSalary(double salary) {
         return repository.findBySalaryGreaterThanEqualOrderBySalary(salary);
     }
@@ -73,29 +67,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     public List<Employee> getEmployeesSalaryGreaterAverage() {
         return repository.queryBySalaryOverAverage();    
     }
-    
-    @Override
-    public List<Employee> filterByDepartment(Department department) {
-        return repository.findByDepartment(department);
-    }
 
     @Override
     public List<Employee> filterEmployees(String name, Gender gender, Department department) {
-        List<Employee> filteredList = null;
-
-        if (name != "" && name != null) {
-            filteredList = searchByName(name);
-        }
-
-        if (gender != null) {
-            filteredList = filterByGender(gender);
-        }
-
-        if (department != null) {
-            filteredList = filterByDepartment(department);
-        }
-
-        return filteredList;
+        return repository.filterEmployees(name, gender, department);
     }
     
 }

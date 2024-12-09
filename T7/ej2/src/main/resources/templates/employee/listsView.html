@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{../fragments.html::header}">
+<head th:replace="~{fragments.html::header}">
 </head>
 <body>
-    <nav th:replace="~{../fragments.html::menu}"></nav>
+    <nav th:replace="~{fragments.html::menu}"></nav>
     <h1 th:text="${salaryListTitle}"></h1>
     <table class="table table-striped">
         <thead>
@@ -14,7 +14,7 @@
         <tbody>
             <tr th:each="employee : ${salaryList}">
                 <td th:text="${employee.id}"></td>
-                <td><a th:href="@{/{id}(id=${employee.id})}" th:text="${employee.name}"></a></td>
+                <td><a th:href="@{/employee/{id}(id=${employee.id})}" th:text="${employee.name}"></a></td>
                 <td th:text="${employee.salary}"></td>
             </tr>
         </tbody>
