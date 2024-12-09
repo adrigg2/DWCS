@@ -96,4 +96,17 @@ public class PayslipController {
             return "redirect:/payslip/?msg=" + e.getMessage();
         }
     }
+
+    @GetMapping("/load/new")
+    public String getNew() {
+        payslipService.loadNewPayslips();
+        return "redirect:/payslip";
+    }
+
+    @GetMapping("/load/all")
+    public String getAll() {
+        payslipService.loadOldPayslips();
+        return "redirect:/payslip";
+    }
+    
 }

@@ -137,4 +137,17 @@ public class EmployeeController {
         model.addAttribute("salaryList", employees);
         return "employee/listsView";
     }
+
+    @GetMapping("/payslips/{id}")
+    public String getMethodName(@PathVariable Long id, Model model) {
+        try {
+            Employee employee = employeeService.getById(id);
+            model.addAttribute("payslips", employee.getPayslips());
+            model.addAttribute("employee", employee);
+            return "employee/payslipsView";
+        } catch (RuntimeException e) {
+            return "redirect:/?msg=" + e.getMessage();
+        }
+    }
+    
 }

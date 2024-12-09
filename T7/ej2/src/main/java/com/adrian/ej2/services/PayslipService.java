@@ -10,4 +10,6 @@ public interface PayslipService {
     Payslip getById(long id);
     Payslip edit(Payslip department);
     void delete(long id);
+    void loadNewPayslips();
+    void loadOldPayslips();
 }

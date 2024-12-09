@@ -4,7 +4,7 @@
     </head>
     <body>
         <nav th:replace="~{../fragments.html::menu}"></nav>
-        <h1>List of payslips</h1>
+        <h1>Payslips of <span th:text="${employee.name}"></span></h1>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -13,27 +13,22 @@
                     <th>Gross Salary</th>
                     <th>Tax</th>
                     <th>Net Salary</th>
-                    <th>Employee</th>
                     <th>Edit</th>
                     <th>Remove</th>
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="payslip : ${payslipList}">
+                <tr th:each="payslip : ${payslips}">
                     <td th:text="${payslip.id}"></td>
                     <td th:text="${payslip.payslipDate}"></td>
                     <td th:text="${payslip.grossSalary}"></td>
                     <td th:text="${payslip.taxPercent}"></td>
                     <td th:text="${payslip.netSalary}"></td>
-                    <td th:text="${payslip.employee.name}"></td>
                     <td><a th:href="@{/payslip/edit/{id}(id=${payslip.id})}" class="btn btn-primary">Edit</a></td>
                     <td><a th:href="@{/payslip/delete/{id}(id=${payslip.id})}" class="btn btn-danger">Delete</a></td>
                 </tr>
             </tbody>
         </table>
-        <p class="alert alert-danger" th:if="${msg != null}">Error: <span th:text="${msg}"></span></p>
-        <a class="btn btn-primary" th:href="@{/}">Home</a><br>
-        <a class="btn btn-primary" th:href="@{/payslip/load/new}">Load new</a><br>
-        <a class="btn btn-danger" th:href="@{/payslip/load/all}">Load all</a><br>
+        <a th:href="@{/}">Home</a><br>
     </body>
 </html>
