@@ -1,11 +1,13 @@
 package com.adrian.ej2.domain;
 
-import jakarta.persistence.Column;
+import java.time.LocalDate;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -17,14 +19,15 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(of = "id")
 
 @Entity
-public class Department {
+public class Payslip {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty
-    @Column(unique = true)
-    private String name;
-    
-    private Double annualBudget;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    LocalDate payslipDate;
+
+    Double grossSalary;
+    Double taxPercent;
+    Double netSalary;
 }

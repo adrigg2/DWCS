@@ -2,7 +2,10 @@ package com.adrian.ej2.services;
 
 import java.util.List;
 
+<<<<<<< HEAD
 import com.adrian.ej2.domain.Department;
+=======
+>>>>>>> casa
 import com.adrian.ej2.domain.Employee;
 import com.adrian.ej2.domain.Gender;
 

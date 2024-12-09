@@ -1,11 +1,17 @@
 package com.adrian.ej2.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
@@ -40,4 +46,7 @@ public class Employee {
     @ManyToOne
     @JoinColumn(name = "DEPT_ID", foreignKey = @ForeignKey(name = "DEPT_ID_FK"))
     private Department department;
+
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Payslip> payslips = new ArrayList<>();
 }
