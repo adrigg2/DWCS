@@ -2,12 +2,15 @@ package com.adrian.ej2.domain;
 
 import java.time.LocalDate;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -25,9 +28,13 @@ public class Payslip {
     private Long id;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    LocalDate payslipDate;
+    private LocalDate payslipDate;
 
-    Double grossSalary;
-    Double taxPercent;
-    Double netSalary;
+    private Double grossSalary;
+    private Double taxPercent;
+    private Double netSalary;
+
+    @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Employee employee;
 }

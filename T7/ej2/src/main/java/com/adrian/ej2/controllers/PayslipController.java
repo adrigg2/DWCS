@@ -10,24 +10,28 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.adrian.ej2.domain.Department;
-import com.adrian.ej2.services.DepartmentService;
+import com.adrian.ej2.domain.Payslip;
+import com.adrian.ej2.services.EmployeeService;
+import com.adrian.ej2.services.PayslipService;
 
 import jakarta.validation.Valid;
 
 @Controller
-@RequestMapping("/department")
-public class DepartmentController {
+@RequestMapping("/payslip")
+public class PayslipController {
     @Autowired
-    private DepartmentService departmentService;
+    private PayslipService payslipService;
+
+    @Autowired
+    private EmployeeService employeeService;
 
     @GetMapping( { "/", "/list" } )
     public String showList(@RequestParam(required = false) String msg, Model model) {
         if (msg != null) {
             model.addAttribute("msg", msg);
         }
-        model.addAttribute("departmentList", departmentService.getAll());
-        return "department/listView";
+        model.addAttribute("payslipList", payslipService.getAll());
+        return "payslip/listView";
     }
 
     @GetMapping("/new")
@@ -36,21 +40,22 @@ public class DepartmentController {
             model.addAttribute("msg", msg);
         }
 
-        model.addAttribute("departmentForm", new Department());
-        return "department/newFormView";
+        model.addAttribute("payslipForm", new Payslip());
+        model.addAttribute("employees", employeeService.getAll());
+        return "payslip/newFormView";
     }
 
     @PostMapping("/new/submit")
-    public String showNewSubmit(@Valid Department departmentForm, BindingResult bindingResult) {
+    public String showNewSubmit(@Valid Payslip payslipForm, BindingResult bindingResult) {
         if (bindingResult.hasErrors())  {
-            return "redirect:/department/new?msg=Incorrect form";
+            return "redirect:/payslip/new?msg=Incorrect form";
         }
 
         try {
-            departmentService.add(departmentForm);
-            return "redirect:/department/list";
+            payslipService.add(payslipForm);
+            return "redirect:/payslip/list";
         } catch (RuntimeException e) {
-            return "redirect:/department/new?msg=" + e.getMessage();
+            return "redirect:/payslip/new?msg=" + e.getMessage();
         } 
     }
     
@@ -61,34 +66,34 @@ public class DepartmentController {
         }
 
         try {
-            Department department = departmentService.getById(id);
-            model.addAttribute("departmentForm", department);
-            return "department/editFormView";
+            Payslip payslip = payslipService.getById(id);
+            model.addAttribute("payslipForm", payslip);
+            return "payslip/editFormView";
         } catch (RuntimeException e) {
-            return "redirect:/department/?msg=" + e.getMessage();
+            return "redirect:/payslip/?msg=" + e.getMessage();
         }
     }
 
     @PostMapping("/edit/{id}/submit")
-    public String showEditSubmit(@PathVariable Long id, @Valid Department departmentForm, BindingResult bindingResult) {
+    public String showEditSubmit(@PathVariable Long id, @Valid Payslip payslipForm, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "redirect:/department/edit/" + id + "?msg=Incorrect form";
+            return "redirect:/payslip/edit/" + id + "?msg=Incorrect form";
         }
         try {
-            departmentService.edit(departmentForm);
-            return "redirect:/department/list";
+            payslipService.edit(payslipForm);
+            return "redirect:/payslip/list";
         } catch (RuntimeException e) {
-            return "redirect:/department/edit/" + id + "?msg=" + e.getMessage();
+            return "redirect:/payslip/edit/" + id + "?msg=" + e.getMessage();
         } 
     }
 
     @GetMapping("/delete/{id}")
     public String showDelete(@PathVariable long id) {
         try {
-            departmentService.delete(id);
-            return "redirect:/department/list";
+            payslipService.delete(id);
+            return "redirect:/payslip/list";
         } catch (RuntimeException e) {
-            return "redirect:/department/?msg=" + e.getMessage();
+            return "redirect:/payslip/?msg=" + e.getMessage();
         }
     }
 }

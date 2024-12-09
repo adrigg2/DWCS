@@ -54,7 +54,7 @@ public class EmployeeController {
     @PostMapping("/new/submit")
     public String showNewSubmit(@Valid Employee employeeForm, BindingResult bindingResult) {
         if (bindingResult.hasErrors())  {
-            return "redirect:/?msg=Incorrect%20form";
+            return "redirect:/?msg=Incorrect form";
         }
         try {
             employeeService.add(employeeForm);
@@ -78,7 +78,7 @@ public class EmployeeController {
     @PostMapping("/edit/{id}/submit")
     public String showEditSubmit(@PathVariable Long id, @Valid Employee employeeForm, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "redirect:/?msg=Incorrect%20form";
+            return "redirect:/?msg=Incorrect form";
         }
         try {
             employeeService.edit(employeeForm);

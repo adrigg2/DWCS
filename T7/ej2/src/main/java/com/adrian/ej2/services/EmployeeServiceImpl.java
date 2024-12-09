@@ -26,17 +26,17 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee getById(long id) throws RuntimeException {
-        return repository.findById(id).orElseThrow(() -> new RuntimeException("There%20is%20no%20employee%20with%20that%20id"));
+        return repository.findById(id).orElseThrow(() -> new RuntimeException("There is no employee with that id"));
     }
 
     @Override
     public Employee add(Employee employee) {
         Double departmentExpenses = repository.getSalarySumByDepartment(employee.getDepartment().getId());
-        Department department = departmentRepository.findById(employee.getDepartment().getId()).orElseThrow(() -> new RuntimeException("There%20is%20no%20department%20with%20that%20id"));
+        Department department = departmentRepository.findById(employee.getDepartment().getId()).orElseThrow(() -> new RuntimeException("There is no department with that id"));
         Double departmentBudget = department.getAnnualBudget();
         
         if (departmentExpenses + employee.getSalary() > departmentBudget) {
-            throw new RuntimeException("The%20inclusion%20of%20that%20employee%20would%20leave%20the%20department%20in%20red%20numbers");
+            throw new RuntimeException("The inclusion of that employee would leave the department in red numbers");
         }
 
         return repository.save(employee);

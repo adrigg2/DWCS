@@ -21,7 +21,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee getById(long id) throws RuntimeException {
-        return repository.findById(id).orElseThrow(() -> new RuntimeException("There%20is%20no%20employee%20with%20that%20id"));
+        return repository.findById(id).orElseThrow(() -> new RuntimeException("There is no employee with that id"));
     }
 
     @Override

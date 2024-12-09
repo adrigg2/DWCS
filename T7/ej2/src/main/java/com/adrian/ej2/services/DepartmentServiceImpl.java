@@ -1,19 +1,13 @@
 package com.adrian.ej2.services;
 
-<<<<<<< HEAD
 import java.util.List;
 
-=======
->>>>>>> casa
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.adrian.ej2.domain.Department;
 import com.adrian.ej2.repositories.DepartmentRepository;
-<<<<<<< HEAD
-=======
 import com.adrian.ej2.repositories.EmployeeRepository;
->>>>>>> casa
 
 @Service
 public class DepartmentServiceImpl implements DepartmentService {
@@ -35,7 +29,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public Department getById(long id) {
-        return departmentRepository.findById(id).orElseThrow(() -> new RuntimeException("There%20is%20no%20department%20with%20that%20id"));
+        return departmentRepository.findById(id).orElseThrow(() -> new RuntimeException("There is no department with that id"));
     }
 
     @Override
@@ -56,7 +50,7 @@ public class DepartmentServiceImpl implements DepartmentService {
         if (employeeQuantity == 0) {
             departmentRepository.deleteById(id);
         } else {
-            throw new RuntimeException("You%20can%27delete%20a%20Department%20with%20employees");
+            throw new RuntimeException("You can't delete a Department with employees");
         }
     }
     

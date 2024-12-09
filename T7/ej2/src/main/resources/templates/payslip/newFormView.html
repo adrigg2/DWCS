@@ -4,10 +4,13 @@
     </head>
     <body>
         <nav th:replace="~{../fragments.html::menu}"></nav>
-        <h1>New department</h1>
+        <h1>New payslip</h1>
         <form method="post" action="#" th:action="@{/department/new/submit}" th:object="${departmentForm}">
             <label for="id">Id: </label><input type="hidden" name="id" id="id" th:field="*{id}"><br>
-            <label for="name">Name: </label><input type="text" name="name" id="name" th:field="*{name}"><br>
+            <label for="date">Date: </label><input type="date" name="date" id="date" th:field="*{payslipDate}"><br>
+            <label for="grossSalary">Gross Salary: </label><input type="text" name="grossSalary" id="grossSalary" th:field="*{grossSalary}">
+            <label for="tax">Tax: </label><input type="text" name="tax" id="tax" th:field="*{taxPercent}">
+            <label for="netSalary">Net Salary: </label><input type="text" name="netSalary" id="netSalary" th:field="*{netSalary}">
             <input type="submit" value="Send">
         </form>
         <p class="alert alert-danger" th:if="${msg != null}">Error: <span th:text="${msg}"></span></p>

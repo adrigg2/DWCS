@@ -1,11 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Salary list</title>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{../fragments.html::header}">
 </head>
 <body>
+    <nav th:replace="~{../fragments.html::menu}"></nav>
     <h1 th:text="${salaryListTitle}"></h1>
     <table class="table table-striped">
         <thead>

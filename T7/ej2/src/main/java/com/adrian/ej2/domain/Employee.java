@@ -19,6 +19,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
 @AllArgsConstructor
@@ -47,6 +48,7 @@ public class Employee {
     @JoinColumn(name = "DEPT_ID", foreignKey = @ForeignKey(name = "DEPT_ID_FK"))
     private Department department;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ToString.Exclude
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "empleado")
     private List<Payslip> payslips = new ArrayList<>();
 }
