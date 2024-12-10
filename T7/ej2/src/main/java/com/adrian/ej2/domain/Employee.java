@@ -49,6 +49,6 @@ public class Employee {
     private Department department;
 
     @ToString.Exclude
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "employee")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "employee") // Cascade type -> When deleting an employee, al their payslips are removed
     private List<Payslip> payslips = new ArrayList<>();
 }

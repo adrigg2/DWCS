@@ -1,0 +1,13 @@
+package com.adrian.ej2.services;
+
+import java.util.List;
+
+import com.adrian.ej2.domain.Project;
+
+public interface ProjectService {
+    Project add(Project project);
+    List<Project> getAll();
+    Project getById(long id);
+    Project edit(Project project);
+    void delete(long id);
+}
