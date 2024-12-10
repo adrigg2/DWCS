@@ -7,7 +7,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.adrian.ej2.domain.Department;
@@ -16,12 +15,11 @@ import com.adrian.ej2.services.DepartmentService;
 import jakarta.validation.Valid;
 
 @Controller
-@RequestMapping("/department")
 public class DepartmentController {
     @Autowired
     private DepartmentService departmentService;
 
-    @GetMapping( { "/", "/list" } )
+    @GetMapping("/department/list")
     public String showList(@RequestParam(required = false) String msg, Model model) {
         if (msg != null) {
             model.addAttribute("msg", msg);
@@ -30,7 +28,7 @@ public class DepartmentController {
         return "department/listView";
     }
 
-    @GetMapping("/new")
+    @GetMapping("/department/new")
     public String showNew(@RequestParam(required = false) String msg, Model model) {
         if (msg != null) {
             model.addAttribute("msg", msg);
@@ -40,7 +38,7 @@ public class DepartmentController {
         return "department/newFormView";
     }
 
-    @PostMapping("/new/submit")
+    @PostMapping("/department/new/submit")
     public String showNewSubmit(@Valid Department departmentForm, BindingResult bindingResult) {
         if (bindingResult.hasErrors())  {
             return "redirect:/department/new?msg=Incorrect form";
@@ -54,7 +52,7 @@ public class DepartmentController {
         } 
     }
     
-    @GetMapping("/edit/{id}")
+    @GetMapping("/department/edit/{id}")
     public String showEditForm(@PathVariable long id, @RequestParam(required = false) String msg, Model model) {
         if (msg != null) {
             model.addAttribute("msg", msg);
@@ -69,7 +67,7 @@ public class DepartmentController {
         }
     }
 
-    @PostMapping("/edit/{id}/submit")
+    @PostMapping("/department/edit/{id}/submit")
     public String showEditSubmit(@PathVariable Long id, @Valid Department departmentForm, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "redirect:/department/edit/" + id + "?msg=Incorrect form";
@@ -82,13 +80,13 @@ public class DepartmentController {
         } 
     }
 
-    @GetMapping("/delete/{id}")
+    @GetMapping("/department/delete/{id}")
     public String showDelete(@PathVariable long id) {
         try {
             departmentService.delete(id);
             return "redirect:/department/list";
         } catch (RuntimeException e) {
-            return "redirect:/department/?msg=" + e.getMessage();
+            return "redirect:/department/list?msg=" + e.getMessage();
         }
     }
 }

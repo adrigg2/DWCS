@@ -7,7 +7,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.adrian.ej2.domain.Payslip;
@@ -17,7 +16,6 @@ import com.adrian.ej2.services.PayslipService;
 import jakarta.validation.Valid;
 
 @Controller
-@RequestMapping("/payslip")
 public class PayslipController {
     @Autowired
     private PayslipService payslipService;
@@ -25,7 +23,7 @@ public class PayslipController {
     @Autowired
     private EmployeeService employeeService;
 
-    @GetMapping( { "/", "/list" } )
+    @GetMapping("/payslip/list")
     public String showList(@RequestParam(required = false) String msg, Model model) {
         if (msg != null) {
             model.addAttribute("msg", msg);
@@ -34,7 +32,7 @@ public class PayslipController {
         return "payslip/listView";
     }
 
-    @GetMapping("/new")
+    @GetMapping("/payslip/new")
     public String showNew(@RequestParam(required = false) String msg, Model model) {
         if (msg != null) {
             model.addAttribute("msg", msg);
@@ -45,7 +43,7 @@ public class PayslipController {
         return "payslip/newFormView";
     }
 
-    @PostMapping("/new/submit")
+    @PostMapping("/payslip/new/submit")
     public String showNewSubmit(@Valid Payslip payslipForm, BindingResult bindingResult) {
         if (bindingResult.hasErrors())  {
             return "redirect:/payslip/new?msg=Incorrect form";
@@ -59,7 +57,7 @@ public class PayslipController {
         } 
     }
     
-    @GetMapping("/edit/{id}")
+    @GetMapping("/payslip/edit/{id}")
     public String showEditForm(@PathVariable long id, @RequestParam(required = false) String msg, Model model) {
         if (msg != null) {
             model.addAttribute("msg", msg);
@@ -74,7 +72,7 @@ public class PayslipController {
         }
     }
 
-    @PostMapping("/edit/{id}/submit")
+    @PostMapping("/payslip/edit/{id}/submit")
     public String showEditSubmit(@PathVariable Long id, @Valid Payslip payslipForm, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "redirect:/payslip/edit/" + id + "?msg=Incorrect form";
@@ -87,26 +85,26 @@ public class PayslipController {
         } 
     }
 
-    @GetMapping("/delete/{id}")
+    @GetMapping("/payslip/delete/{id}")
     public String showDelete(@PathVariable long id) {
         try {
             payslipService.delete(id);
             return "redirect:/payslip/list";
         } catch (RuntimeException e) {
-            return "redirect:/payslip/?msg=" + e.getMessage();
+            return "redirect:/payslip/list?msg=" + e.getMessage();
         }
     }
 
-    @GetMapping("/load/new")
+    @GetMapping("/payslip/load/new")
     public String getNew() {
         payslipService.loadNewPayslips();
-        return "redirect:/payslip";
+        return "redirect:/payslip/list";
     }
 
-    @GetMapping("/load/all")
+    @GetMapping("/payslip/load/all")
     public String getAll() {
         payslipService.loadOldPayslips();
-        return "redirect:/payslip";
+        return "redirect:/payslip/list";
     }
     
 }

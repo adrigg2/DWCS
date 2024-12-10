@@ -3,6 +3,7 @@ package com.adrian.ej2.services;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -56,6 +57,10 @@ public class PayslipServiceImpl implements PayslipService {
                 return file.endsWith(".csv");
             });
 
+            if (newPayslips == null) {
+                return;
+            }
+
             for (File payslip : newPayslips) {
                 List<String> data = Files.readAllLines(payslip.toPath());
                 for (String line : data) {
@@ -67,19 +72,23 @@ public class PayslipServiceImpl implements PayslipService {
                     Employee employee = employeeRepository.findById(Long.parseLong(payslipData[4])).orElseThrow(() -> new RuntimeException("Incorrect employee id"));
                     repository.save(new Payslip(null, date, grossSalary, tax, netSalary, employee));
                 }
-                payslip.renameTo(new File("legacy/" + payslip.getName()));
+                Files.move(payslip.toPath(), Path.of("payslips/legacy/" + payslip.getName()));
             }
         } catch (IOException e) {
-            throw new RuntimeException("There has been an error loading the payslips");
+            throw new RuntimeException("There has been an error loading the payslips" + e.getMessage());
         }
     }
 
     @Override
     public void loadOldPayslips() {
         try {
-            File[] newPayslips = new File("legacy/payslips").listFiles((_, file) -> {
+            File[] newPayslips = new File("payslips/legacy").listFiles((_, file) -> {
                 return file.endsWith(".csv");
             });
+
+            if (newPayslips == null) {
+                return;
+            }
 
             repository.deleteAll();
             
