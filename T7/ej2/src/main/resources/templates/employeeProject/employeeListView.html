@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{fragments.html::header}">
+    </head>
+    <body>
+        <nav th:replace="~{fragments.html::menu}"></nav>
+        <h1><span th:text="${employee.name}">'s projects</span></h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="project : ${employeeProjectList}">
+                    <td th:text="${project.project.id}"></td>
+                    <td th:text="${project.project.name}"></td>
+                    <td th:text="${project.position}"></td>
+                    <td><a th:href="@{/emplProj/delete/{id}(id=${project.id})}" class="btn btn-danger">Delete</a></td>
+                </tr>
+            </tbody>
+        </table>
+        <a th:href="@{/}">Home</a><br>
+        <a th:href="@{/emplProj/new}">Añadir nuevo empleado a proyecto</a>
+    </body>
+</html>

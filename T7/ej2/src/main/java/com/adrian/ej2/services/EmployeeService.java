@@ -2,17 +2,15 @@ package com.adrian.ej2.services;
 
 import java.util.List;
 
-import com.adrian.ej2.domain.Department;
 import com.adrian.ej2.domain.Employee;
-import com.adrian.ej2.domain.Gender;
 
 public interface EmployeeService {
     List<Employee> getAll();
-    Employee getById(long id);
-    Employee add(Employee employee);
-    Employee edit(Employee employee);
-    void delete(long id);
+    Employee getById(long id) throws RuntimeException;
+    Employee add(Employee employee) throws RuntimeException;
+    Employee edit(Employee employee) throws RuntimeException;
+    void delete(long id) throws RuntimeException;
     List<Employee> getEmployeesGreaterSalary(double salary);
     List<Employee> getEmployeesSalaryGreaterAverage();
-    List<Employee> filterEmployees(String name, Gender gender, Department department);
+    List<Employee> filterEmployees(String name, String gender, String department);
 }

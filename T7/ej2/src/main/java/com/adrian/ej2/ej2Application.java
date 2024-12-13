@@ -8,8 +8,10 @@ import org.springframework.context.annotation.Bean;
 import com.adrian.ej2.domain.Department;
 import com.adrian.ej2.domain.Employee;
 import com.adrian.ej2.domain.Gender;
+import com.adrian.ej2.domain.Project;
 import com.adrian.ej2.services.DepartmentService;
 import com.adrian.ej2.services.EmployeeService;
+import com.adrian.ej2.services.ProjectService;
 
 @SpringBootApplication
 public class ej2Application {
@@ -19,8 +21,11 @@ public class ej2Application {
 	}
 
 	@Bean
-	CommandLineRunner initData(EmployeeService employeeService, DepartmentService departmentService) {
+	CommandLineRunner initData(EmployeeService employeeService, DepartmentService departmentService, ProjectService projectService) {
 		return _ -> {
+			projectService.add(new Project(null, "New EU regulations"));
+			projectService.add(new Project(null, "Current web update"));
+
 			Department it = departmentService.add(new Department(null, "IT", 1e6));
 			Department sales = departmentService.add(new Department(null, "Sales", 1e6));
 			Department hr = departmentService.add(new Department(null, "Human Resources", 1e6));

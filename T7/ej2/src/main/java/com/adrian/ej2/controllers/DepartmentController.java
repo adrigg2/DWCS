@@ -21,18 +21,14 @@ public class DepartmentController {
 
     @GetMapping("/department/list")
     public String showList(@RequestParam(required = false) String msg, Model model) {
-        if (msg != null) {
-            model.addAttribute("msg", msg);
-        }
+        model.addAttribute("msg", msg);
         model.addAttribute("departmentList", departmentService.getAll());
         return "department/listView";
     }
 
     @GetMapping("/department/new")
     public String showNew(@RequestParam(required = false) String msg, Model model) {
-        if (msg != null) {
-            model.addAttribute("msg", msg);
-        }
+        model.addAttribute("msg", msg);
 
         model.addAttribute("departmentForm", new Department());
         return "department/newFormView";
@@ -54,9 +50,7 @@ public class DepartmentController {
     
     @GetMapping("/department/edit/{id}")
     public String showEditForm(@PathVariable long id, @RequestParam(required = false) String msg, Model model) {
-        if (msg != null) {
-            model.addAttribute("msg", msg);
-        }
+        model.addAttribute("msg", msg);
 
         try {
             Department department = departmentService.getById(id);

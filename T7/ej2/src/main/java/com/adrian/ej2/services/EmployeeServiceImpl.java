@@ -30,7 +30,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Employee add(Employee employee) {
+    public Employee add(Employee employee) throws RuntimeException {
         Double departmentExpenses = repository.getSalarySumByDepartment(employee.getDepartment().getId());
         if (departmentExpenses == null) {
             departmentExpenses = 0.0;
@@ -69,8 +69,31 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public List<Employee> filterEmployees(String name, Gender gender, Department department) {
-        return repository.filterEmployees(name, gender, department);
+    public List<Employee> filterEmployees(String name, String gender, String department) {
+        Gender genderValue;
+        Department departmentValue;
+
+        if (gender == null || gender.isEmpty()) {
+            genderValue = null;
+        } else {
+            try {
+                genderValue = Gender.valueOf(gender);
+            } catch (IllegalArgumentException e) {
+                genderValue = null;
+            }
+        }
+
+        if (department == null || department.isEmpty()) {
+            departmentValue = null;
+        } else {
+            try {
+                departmentValue = departmentRepository.findById(Long.parseLong(department)).orElse(null);
+            } catch (NumberFormatException e) {
+                departmentValue = null;
+            }
+        }
+
+        return repository.filterEmployees(name, genderValue, departmentValue);
     }
     
 }

@@ -16,7 +16,7 @@
                     <th>Gender</th>
                     <th>Payslips</th>
                     <th>Edit</th>
-                    <th>Remove</th>
+                    <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -27,7 +27,7 @@
                     <td th:text="${employee.salary}"></td>
                     <td th:text="${employee.isActive}"></td>
                     <td th:text="${employee.gender}"></td>
-                    <td><a th:href="@{/payslip/{id}(id=${employee.id})}" class="btn btn-primary">Payslips</a></td>
+                    <td><a th:href="@{/payslips/{id}(id=${employee.id})}" class="btn btn-primary">Payslips</a></td>
                     <td><a th:href="@{/edit/{id}(id=${employee.id})}" class="btn btn-primary">Edit</a></td>
                     <td><a th:href="@{/delete/{id}(id=${employee.id})}" class="btn btn-danger">Delete</a></td>
                 </tr>

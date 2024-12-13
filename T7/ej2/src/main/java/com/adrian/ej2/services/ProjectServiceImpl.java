@@ -24,18 +24,18 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public Project getById(long id) {
+    public Project getById(long id) throws RuntimeException {
         return projectRepository.findById(id).orElseThrow(() -> new RuntimeException("There is no department with that id"));
     }
 
     @Override
-    public Project edit(Project project) {
+    public Project edit(Project project) throws RuntimeException {
         getById(project.getId()); // Check if project exists
         return projectRepository.save(project);
     }
 
     @Override
-    public void delete(long id) {
+    public void delete(long id) throws RuntimeException {
         getById(id);
         projectRepository.deleteById(id);
     }

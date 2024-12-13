@@ -6,7 +6,7 @@
         <nav th:replace="~{fragments.html::menu}"></nav>
         <h1>New employee</h1>
         <form method="post" action="#" th:action="@{/new/submit}" th:object="${employeeForm}">
-            <label for="id">Id: </label><input type="hidden" name="id" id="id" th:field="*{id}"><br>
+            <input type="hidden" name="id" id="id" th:field="*{id}"><br>
             <label for="name">Name: </label><input type="text" name="name" id="name" th:field="*{name}"><br>
             <label for="email">Email: </label><input type="text" name="email" id="email" th:field="*{email}"><br>
             <label for="salary">Salary: </label><input type="text" name="salary" id="salary" th:field="*{salary}"><br>

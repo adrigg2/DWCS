@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{fragments.html::header}">
+    </head>
+    <body>
+        <nav th:replace="~{fragments.html::menu}"></nav>
+        <h1>Employee/Project New relation</h1>
+        <form method="post" action="#" th:action="@{/emplProj/new/submit}" th:object="${employeeProjectForm}">
+            <input type="hidden" name="id" id="id" th:field="*{id}"><br>
+            Employee: <br>
+            <select name="list1" id="list1" th:field="*{employee}">
+                <option th:each="employee : ${employeesList}" th:value="${employee.id}" th:text="${employee.name}"></option>
+            </select><br>
+            Project: <br>
+            <select name="list2" id="list2" th:field="*{project}">
+                <option th:each="project : ${projectsList}" th:value="${project.id}" th:text="${project.name}"></option>
+            </select><br>
+            <label for="position">Position: </label><input type="text" id="position" name="position" th:field="*{position}">
+            <input type="submit" value="Send">
+        </form>
+        <p class="alert alert-danger" th:if="${msg != null}">Error: <span th:text="${msg}"></span></p>
+        <a th:href="@{/}">Home</a><br>
+    </body>
+</html>

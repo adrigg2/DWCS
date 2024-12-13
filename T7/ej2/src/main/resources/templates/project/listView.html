@@ -10,14 +10,16 @@
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
+                    <th>Employees</th>
                     <th>Edit</th>
-                    <th>Remove</th>
+                    <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
                 <tr th:each="project : ${projectList}">
                     <td th:text="${project.id}"></td>
                     <td th:text="${project.name}"></td>
+                    <td><a th:href="@{/emplProj/pro/{id}(id=${project.id})}" class="btn btn-primary">Employees</a></td>
                     <td><a th:href="@{/project/edit/{id}(id=${project.id})}" class="btn btn-primary">Edit</a></td>
                     <td><a th:href="@{/project/delete/{id}(id=${project.id})}" class="btn btn-danger">Delete</a></td>
                 </tr>
@@ -25,6 +27,6 @@
         </table>
         <p class="alert alert-danger" th:if="${msg != null}">Error: <span th:text="${msg}"></span></p>
         <a class="btn btn-primary" th:href="@{/}">Home</a><br>
-        <a class="btn btn-primary" th:href="@{/project/new}">New Department</a><br>
+        <a class="btn btn-primary" th:href="@{/project/new}">New Project</a><br>
     </body>
 </html>

@@ -21,18 +21,14 @@ public class ProjectController {
 
     @GetMapping("/project/list")
     public String showList(@RequestParam(required = false) String msg, Model model) {
-        if (msg != null) {
-            model.addAttribute("msg", msg);
-        }
+        model.addAttribute("msg", msg);
         model.addAttribute("projectList", projectService.getAll());
         return "project/listView";
     }
 
     @GetMapping("/project/new")
     public String showNew(@RequestParam(required = false) String msg, Model model) {
-        if (msg != null) {
-            model.addAttribute("msg", msg);
-        }
+        model.addAttribute("msg", msg);
 
         model.addAttribute("projectForm", new Project());
         return "project/newFormView";
@@ -54,9 +50,7 @@ public class ProjectController {
     
     @GetMapping("/project/edit/{id}")
     public String showEditForm(@PathVariable long id, @RequestParam(required = false) String msg, Model model) {
-        if (msg != null) {
-            model.addAttribute("msg", msg);
-        }
+        model.addAttribute("msg", msg);
 
         try {
             Project project = projectService.getById(id);

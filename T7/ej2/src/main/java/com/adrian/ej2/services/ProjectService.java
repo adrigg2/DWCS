@@ -7,7 +7,7 @@ import com.adrian.ej2.domain.Project;
 public interface ProjectService {
     Project add(Project project);
     List<Project> getAll();
-    Project getById(long id);
-    Project edit(Project project);
-    void delete(long id);
+    Project getById(long id) throws RuntimeException;
+    Project edit(Project project) throws RuntimeException;
+    void delete(long id) throws RuntimeException;
 }

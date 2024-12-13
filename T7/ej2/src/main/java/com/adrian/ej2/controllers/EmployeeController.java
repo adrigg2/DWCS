@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 
 import com.adrian.ej2.domain.Employee;
-import com.adrian.ej2.domain.Gender;
 import com.adrian.ej2.services.DepartmentService;
 import com.adrian.ej2.services.EmployeeService;
 
@@ -30,9 +29,7 @@ public class EmployeeController {
 
     @GetMapping( { "/", "/list" } )
     public String showList(@RequestParam(required = false) String msg, Model model) {
-        if (msg != null) {
-            model.addAttribute("msg", msg);
-        }
+        model.addAttribute("msg", msg);
         model.addAttribute("employeeList", employeeService.getAll());
         model.addAttribute("departmentList", departmentService.getAll());
         return "employee/listView";
@@ -51,9 +48,7 @@ public class EmployeeController {
 
     @GetMapping("/new")
     public String showNew(@RequestParam(required = false) String msg, Model model) {
-        if (msg != null) {
-            model.addAttribute("msg", msg);
-        }
+        model.addAttribute("msg", msg);
 
         model.addAttribute("employeeForm", new Employee());
         model.addAttribute("departmentList", departmentService.getAll());
@@ -63,21 +58,19 @@ public class EmployeeController {
     @PostMapping("/new/submit")
     public String showNewSubmit(@Valid Employee employeeForm, BindingResult bindingResult) {
         if (bindingResult.hasErrors())  {
-            return "redirect:/new/?msg=Incorrect form";
+            return "redirect:/new?msg=Incorrect form";
         }
         try {
             employeeService.add(employeeForm);
             return "redirect:/list";
         } catch (RuntimeException e) {
-            return "redirect:/new/?msg=" + e.getMessage();
+            return "redirect:/new?msg=" + e.getMessage();
         } 
     }
     
     @GetMapping("/edit/{id}")
     public String showEditForm(@PathVariable long id, @RequestParam(required = false) String msg, Model model) {
-        if (msg != null) {
-            model.addAttribute("msg", msg);
-        }
+        model.addAttribute("msg", msg);
         
         try {
             Employee employee = employeeService.getById(id);
@@ -113,21 +106,13 @@ public class EmployeeController {
     }
 
     @GetMapping("/filter")
-    public String getEmployeeByFilter(@RequestParam(required = false) String gender, @RequestParam(required = false) String name, @RequestParam(required = false) Long department, Model model) {
-        if (gender.isEmpty() && name.isEmpty() && department == null) {
+    public String getEmployeeByFilter(@RequestParam(required = false) String gender, @RequestParam(required = false) String name, @RequestParam(required = false) String department, Model model) {
+        if (gender.isEmpty() && name.isEmpty() && department.isEmpty()) {
             return "redirect:/";
-        }
+        }        
 
-        Gender genderValue;
-
-        if (gender.isEmpty()) {
-            genderValue = null;
-        } else {
-            genderValue = Gender.valueOf(gender);
-        }
-
-        model.addAttribute("employeeList", employeeService.filterEmployees(name, genderValue, departmentService.getById(department)));
-        model.addAttribute("selectedGender", gender);
+        model.addAttribute("employeeList", employeeService.filterEmployees(name, gender, department));
+        model.addAttribute("departmentList", departmentService.getAll());
         return "employee/listView";
     }
 

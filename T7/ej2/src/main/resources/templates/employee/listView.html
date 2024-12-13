@@ -21,9 +21,11 @@
                 var url = new URL(window.location.href);
                 var genderValue = url.searchParams.get("gender");
                 var departmentValue = url.searchParams.get("department");
+                var nameValue = url.searchParams.get("name");
 
                 document.getElementById("gender").value = genderValue ?? "";
                 document.getElementById("department").value = departmentValue ?? "";
+                document.getElementById("name").value = nameValue ?? "";
             </script>
             <input type="submit" value="Search">
         </form>
@@ -37,8 +39,10 @@
                     <th>Salary</th>
                     <th>Is Active</th>
                     <th>Gender</th>
+                    <th>Department</th>
+                    <th>Projects</th>
                     <th>Edit</th>
-                    <th>Remove</th>
+                    <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -49,6 +53,8 @@
                     <td th:text="${employee.salary}"></td>
                     <td th:text="${employee.isActive}"></td>
                     <td th:text="${employee.gender}"></td>
+                    <td th:text="${employee.department.name}"></td>
+                    <td><a th:href="@{/emplProj/emp/{id}(id=${employee.id})}" class="btn btn-primary">Projects</a></td>
                     <td><a th:href="@{/edit/{id}(id=${employee.id})}" class="btn btn-primary">Edit</a></td>
                     <td><a th:href="@{/delete/{id}(id=${employee.id})}" class="btn btn-danger">Delete</a></td>
                 </tr>

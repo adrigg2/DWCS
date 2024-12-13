@@ -25,18 +25,14 @@ public class PayslipController {
 
     @GetMapping("/payslip/list")
     public String showList(@RequestParam(required = false) String msg, Model model) {
-        if (msg != null) {
-            model.addAttribute("msg", msg);
-        }
+        model.addAttribute("msg", msg);
         model.addAttribute("payslipList", payslipService.getAll());
         return "payslip/listView";
     }
 
     @GetMapping("/payslip/new")
     public String showNew(@RequestParam(required = false) String msg, Model model) {
-        if (msg != null) {
-            model.addAttribute("msg", msg);
-        }
+        model.addAttribute("msg", msg);
 
         model.addAttribute("payslipForm", new Payslip());
         model.addAttribute("employees", employeeService.getAll());
@@ -59,9 +55,7 @@ public class PayslipController {
     
     @GetMapping("/payslip/edit/{id}")
     public String showEditForm(@PathVariable long id, @RequestParam(required = false) String msg, Model model) {
-        if (msg != null) {
-            model.addAttribute("msg", msg);
-        }
+        model.addAttribute("msg", msg);
 
         try {
             Payslip payslip = payslipService.getById(id);

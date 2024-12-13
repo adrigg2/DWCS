@@ -34,24 +34,24 @@ public class PayslipServiceImpl implements PayslipService {
     }
 
     @Override
-    public Payslip getById(long id) {
+    public Payslip getById(long id) throws RuntimeException {
         return repository.findById(id).orElseThrow(() -> new RuntimeException("There is no payslip with that id"));
     }
 
     @Override
-    public Payslip edit(Payslip department) {
+    public Payslip edit(Payslip department) throws RuntimeException {
         getById(department.getId()); // Check if department exists
         return repository.save(department);
     }
 
     @Override
-    public void delete(long id) {
+    public void delete(long id) throws RuntimeException {
         getById(id);
         repository.deleteById(id);
     }
 
     @Override
-    public void loadNewPayslips() {
+    public void loadNewPayslips() throws RuntimeException {
         try {
             File[] newPayslips = new File("payslips").listFiles((_, file) -> {
                 return file.endsWith(".csv");
@@ -80,7 +80,7 @@ public class PayslipServiceImpl implements PayslipService {
     }
 
     @Override
-    public void loadOldPayslips() {
+    public void loadOldPayslips() throws RuntimeException {
         try {
             File[] newPayslips = new File("payslips/legacy").listFiles((_, file) -> {
                 return file.endsWith(".csv");

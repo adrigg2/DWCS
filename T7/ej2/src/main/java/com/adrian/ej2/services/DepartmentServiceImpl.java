@@ -28,12 +28,12 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public Department getById(long id) {
+    public Department getById(long id) throws RuntimeException {
         return departmentRepository.findById(id).orElseThrow(() -> new RuntimeException("There is no department with that id"));
     }
 
     @Override
-    public Department edit(Department department) {
+    public Department edit(Department department) throws RuntimeException {
         getById(department.getId()); // Check if department exists
         return departmentRepository.save(department);
     }
@@ -44,7 +44,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public void delete(long id) {
+    public void delete(long id) throws RuntimeException {
         getById(id);
         Long employeeQuantity = employeeRepository.employeeAmountInDepartment(id);
         if (employeeQuantity == 0) {
