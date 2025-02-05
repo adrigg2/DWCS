@@ -20,6 +20,7 @@ import com.example.empleado.dto.DepartamentoNuevoDto;
 import com.example.empleado.services.DepartamentoDtoConverter;
 import com.example.empleado.services.DepartamentoService;
 
+
 @RestController
 public class DepartamentoController {
 
@@ -79,5 +80,16 @@ public class DepartamentoController {
         departamentoService.delete(id);
         return ResponseEntity.noContent().build(); // cod 204
     }
+
+    @GetMapping("/depto/{id}/empleados")
+    public ResponseEntity<?> getMethodName(@PathVariable Long id) {
+        Departamento departamento = departamentoService.findById(id);
+        if (departamento == null) {
+            return ResponseEntity.notFound().build(); // cod 404
+        }
+
+        return ResponseEntity.ok(departamento.getEmpleados());
+    }
+    
 
 }

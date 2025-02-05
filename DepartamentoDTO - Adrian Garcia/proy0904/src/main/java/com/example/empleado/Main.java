@@ -1,5 +1,7 @@
 package com.example.empleado;
 
+import java.util.HashSet;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -21,9 +23,9 @@ public class Main {
 	@Bean
 	CommandLineRunner initData(EmpleadoService empleadoService, DepartamentoService departamentoService) {
 		return args -> {
-			departamentoService.add(new Departamento(0L, "Informática", 180000.0, 0, null));
-			departamentoService.add(new Departamento(0L, "Comercial", 180000.0, 0, null));
-			departamentoService.add(new Departamento(0L, "RRHH", 180000.0, 0, null));
+			departamentoService.add(new Departamento(0L, "Informática", 180000.0, 0, new HashSet<>()));
+			departamentoService.add(new Departamento(0L, "Comercial", 180000.0, 0, new HashSet<>()));
+			departamentoService.add(new Departamento(0L, "RRHH", 180000.0, 0, new HashSet<>()));
 			empleadoService.add(new Empleado(0L, "pepe", "pepe@gmail.com", 800d, true,
 					Genero.MASCULINO,
 					departamentoService.findByNombre("Informática")));
